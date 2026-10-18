@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light" />
+    <title>Revisor de exámenes</title>
+  </head>
+  <body>
+    <main id="app" class="app">
+      <header class="app-header">
+        <h1>Revisor de exámenes</h1>
+        <p class="lead">Revisión por nombre del alumno, tipo y número de examen.</p>
+      </header>
+
+      <section id="center" class="card">
+        <form id="upload-form" novalidate autocomplete="off">
+          <div class="form-grid">
+            <div class="field">
+              <label for="inp-nombre">Nombre del alumno</label>
+              <input
+                name="nombre_alumno"
+                id="inp-nombre"
+                type="text"
+                autocomplete="off"
+                placeholder="Ingresa el nombre"
+                required
+              />
+              <p class="hint">a = número de letras del primer nombre</p>
+              <p id="aviso-ambiguo" class="error" aria-live="polite">
+                El primer nombre tiene 10 o más letras. El parámetro "a" se inserta
+                como un solo dígito, lo cual es ambiguo. Corrige el nombre para
+                continuar.
+              </p>
+            </div>
+
+            <div class="field">
+              <label for="examen-trigger" id="lbl-examen">Examen</label>
+              <div class="select">
+                <select id="examen-id" name="examen_id" hidden>
+                  <option value="" disabled selected>Selecciona un examen</option>
+                  <optgroup label="Concreto y cimentación">
+                    <option value="1">Examen #1 · 25a kg/cm²</option>
+                    <option value="3">Examen #3 · 2a5 kg/cm²</option>
+                    <option value="5">Examen #5 · 15a kg/cm²</option>
+                    <option value="7">Examen #7 · 27a kg/cm²</option>
+                    <option value="9">Examen #9 · 2a0 kg/cm²</option>
+                    <option value="11">Examen #11 · 13a kg/cm²</option>
+                  </optgroup>
+                  <optgroup label="Masa de aire">
+                    <option value="2">Examen #2 · 1.2a kg/m³</option>
+                    <option value="4">Examen #4 · 1.a1 kg/m³</option>
+                    <option value="6">Examen #6 · 1.3a kg/m³</option>
+                    <option value="8">Examen #8 · 1.a2 kg/m³</option>
+                    <option value="10">Examen #10 · 1.4a kg/m³</option>
+                    <option value="12">Examen #12 · 1.a3 kg/m³</option>
+                  </optgroup>
+                </select>
+                <button
+                  type="button"
+                  id="examen-trigger"
+                  class="select-trigger"
+                  aria-haspopup="listbox"
+                  aria-expanded="false"
+                  aria-controls="examen-menu"
+                  aria-labelledby="lbl-examen"
+                >
+                  <span class="select-value placeholder" data-placeholder="Selecciona un examen"
+                    >Selecciona un examen</span
+                  >
+                  <svg class="select-caret" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+                    <path
+                      fill="currentColor"
+                      d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z"
+                    />
+                  </svg>
+                </button>
+                <ul id="examen-menu" class="select-menu" role="listbox" aria-labelledby="lbl-examen" hidden></ul>
+              </div>
+            </div>
+          </div>
+
+          <div id="preview" class="preview" aria-live="polite">
+            <div class="preview-grid">
+              <div class="preview-item">
+                <span class="hint">Primer nombre</span>
+                <span id="pv-nombre">-</span>
+              </div>
+              <div class="preview-item">
+                <span class="hint">a (letras)</span>
+                <span id="pv-a">-</span>
+              </div>
+              <div class="preview-item">
+                <span class="hint">Examen</span>
+                <span id="pv-examen">-</span>
+              </div>
+              <div class="preview-item">
+                <span class="hint">Parámetro con a</span>
+                <span id="pv-param">-</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button type="submit" id="btn-revisar" disabled>Revisar examen</button>
+          </div>
+        </form>
+      </section>
+
+      <output id="status" class="report" aria-live="polite"></output>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
