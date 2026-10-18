@@ -1,0 +1,209 @@
+{
+  "metadata": {
+    "titulo": "1er Parcial de Física 26-27",
+    "total_examenes": 12,
+    "instruccion_general": "Resuelve y fundamenta tu respuesta aplicando el método visto en clase",
+    "regla_variable_a": "Sustituir 'a' por el número de letras del primer nombre del alumno (ejemplo: CANDIDA = 7)",
+    "advertencia": "'a' se inserta como un solo dígito dentro del número; nombres de 10 o más letras producirían un valor ambiguo",
+    "conteo_por_categoria": {
+      "concreto_cimentacion": 6,
+      "masa_de_aire": 6
+    }
+  },
+  "categorias": {
+    "concreto_cimentacion": {
+      "tema": "Conversión de unidades y cálculo de insumos de construcción",
+      "contexto": "Control de insumos en obra para una losa de cimentación",
+      "datos_fijos": {
+        "volumen_grava": { "valor": 0.6, "unidad": "m3" },
+        "masa_cemento": { "valor": 280, "unidad": "kg" },
+        "capacidad_cubeta": { "valor": 15, "unidad": "L" },
+        "masa_saco_cemento": { "valor": 25, "unidad": "kg" }
+      },
+      "variable_parametrica": "resistencia a la compresión (kg/cm2)",
+      "incisos": [
+        {
+          "inciso": "a",
+          "pregunta": "Resistencia del concreto en psi (libras por pulgada cuadrada)",
+          "magnitud": "presión/esfuerzo",
+          "conversion": "kg/cm2 -> lb/in2",
+          "factores_necesarios": ["1 kg = 2.2046 lb", "1 in = 2.54 cm"],
+          "resultado_esperado_en": "psi"
+        },
+        {
+          "inciso": "b",
+          "pregunta": "Cantidad de cubetas de grava (15 L cada una)",
+          "magnitud": "volumen",
+          "conversion": "m3 -> L",
+          "factores_necesarios": ["1 m3 = 1000 L"],
+          "calculo": "(0.6 m3 x 1000 L/m3) / 15 L por cubeta",
+          "resultado_esperado_en": "cubetas"
+        },
+        {
+          "inciso": "c",
+          "pregunta": "Cantidad de sacos de 25 kg de cemento",
+          "magnitud": "masa",
+          "conversion": "ninguna (conteo)",
+          "calculo": "280 kg / 25 kg por saco",
+          "resultado_esperado_en": "sacos"
+        }
+      ],
+      "nota": "Los incisos b) y c) no dependen de 'a'; solo el inciso a) cambia entre variantes"
+    },
+    "masa_de_aire": {
+      "tema": "Densidad, volumen y conversión de unidades",
+      "contexto": "Masa de aire contenida en un cubo (prisma rectangular)",
+      "datos_fijos": {
+        "dimensiones": { "largo": 21, "ancho": 13, "alto": 12, "unidad": "ft" }
+      },
+      "variable_parametrica": "densidad del aire (kg/m3)",
+      "pregunta": "Masa de aire en gramos",
+      "pasos": [
+        "Calcular volumen: 21 x 13 x 12 = 3276 ft3",
+        "Convertir ft3 a m3",
+        "Multiplicar volumen por densidad para obtener kg",
+        "Convertir kg a g"
+      ],
+      "factores_necesarios": ["1 ft = 0.3048 m (1 ft3 = 0.0283168 m3)", "1 kg = 1000 g"],
+      "resultado_esperado_en": "g"
+    }
+  },
+  "examenes": [
+    {
+      "id": 1,
+      "categoria": "concreto_cimentacion",
+      "expresion_parametro": "25a",
+      "posicion_de_a": "unidades",
+      "formato_valor": "25a kg/cm2",
+      "ejemplo_a": 7,
+      "ejemplo_valor": 257,
+      "ejemplo_unidad": "kg/cm2",
+      "diferencias_de_redaccion": []
+    },
+    {
+      "id": 2,
+      "categoria": "masa_de_aire",
+      "expresion_parametro": "1.2a",
+      "posicion_de_a": "centésimas",
+      "formato_valor": "1.2a kg/m3",
+      "ejemplo_a": 7,
+      "ejemplo_valor": 1.27,
+      "ejemplo_unidad": "kg/m3",
+      "diferencias_de_redaccion": []
+    },
+    {
+      "id": 3,
+      "categoria": "concreto_cimentacion",
+      "expresion_parametro": "2a5",
+      "posicion_de_a": "decenas",
+      "formato_valor": "2a5 kg/cm2",
+      "ejemplo_a": 7,
+      "ejemplo_valor": 275,
+      "ejemplo_unidad": "kg/cm2",
+      "diferencias_de_redaccion": []
+    },
+    {
+      "id": 4,
+      "categoria": "masa_de_aire",
+      "expresion_parametro": "1.a1",
+      "posicion_de_a": "décimas",
+      "formato_valor": "1.a1 kg/m3",
+      "ejemplo_a": 7,
+      "ejemplo_valor": 1.71,
+      "ejemplo_unidad": "kg/m3",
+      "diferencias_de_redaccion": []
+    },
+    {
+      "id": 5,
+      "categoria": "concreto_cimentacion",
+      "expresion_parametro": "15a",
+      "posicion_de_a": "unidades",
+      "formato_valor": "15a kg/cm2",
+      "ejemplo_a": 7,
+      "ejemplo_valor": 157,
+      "ejemplo_unidad": "kg/cm2",
+      "diferencias_de_redaccion": []
+    },
+    {
+      "id": 6,
+      "categoria": "masa_de_aire",
+      "expresion_parametro": "1.3a",
+      "posicion_de_a": "centésimas",
+      "formato_valor": "1.3a kg/m3",
+      "ejemplo_a": 7,
+      "ejemplo_valor": 1.37,
+      "ejemplo_unidad": "kg/m3",
+      "diferencias_de_redaccion": []
+    },
+    {
+      "id": 7,
+      "categoria": "concreto_cimentacion",
+      "expresion_parametro": "27a",
+      "posicion_de_a": "unidades",
+      "formato_valor": "27a kg/cm2",
+      "ejemplo_a": 7,
+      "ejemplo_valor": 277,
+      "ejemplo_unidad": "kg/cm2",
+      "diferencias_de_redaccion": []
+    },
+    {
+      "id": 8,
+      "categoria": "masa_de_aire",
+      "expresion_parametro": "1.a2",
+      "posicion_de_a": "décimas",
+      "formato_valor": "1.a2 kg/m3",
+      "ejemplo_a": 7,
+      "ejemplo_valor": 1.72,
+      "ejemplo_unidad": "kg/m3",
+      "diferencias_de_redaccion": []
+    },
+    {
+      "id": 9,
+      "categoria": "concreto_cimentacion",
+      "expresion_parametro": "2a0",
+      "posicion_de_a": "decenas",
+      "formato_valor": "2a0 kg/cm2",
+      "ejemplo_a": 7,
+      "ejemplo_valor": 270,
+      "ejemplo_unidad": "kg/cm2",
+      "diferencias_de_redaccion": [
+        "El enunciado dice 'Y se requiere que el concreto tenga...' (con 'Y' extra al inicio de la oración)"
+      ]
+    },
+    {
+      "id": 10,
+      "categoria": "masa_de_aire",
+      "expresion_parametro": "1.4a",
+      "posicion_de_a": "centésimas",
+      "formato_valor": "1.4a kg/m3",
+      "ejemplo_a": 7,
+      "ejemplo_valor": 1.47,
+      "ejemplo_unidad": "kg/m3",
+      "diferencias_de_redaccion": []
+    },
+    {
+      "id": 11,
+      "categoria": "concreto_cimentacion",
+      "expresion_parametro": "13a",
+      "posicion_de_a": "unidades",
+      "formato_valor": "13a kg/cm2",
+      "ejemplo_a": 7,
+      "ejemplo_valor": 137,
+      "ejemplo_unidad": "kg/cm2",
+      "diferencias_de_redaccion": [
+        "Inciso b) dice 'requiere' en lugar de 'requieres'"
+      ]
+    },
+    {
+      "id": 12,
+      "categoria": "masa_de_aire",
+      "expresion_parametro": "1.a3",
+      "posicion_de_a": "décimas",
+      "formato_valor": "1.a3 kg/m3",
+      "ejemplo_a": 7,
+      "ejemplo_valor": 1.73,
+      "ejemplo_unidad": "kg/m3",
+      "diferencias_de_redaccion": []
+    }
+  ]
+}
