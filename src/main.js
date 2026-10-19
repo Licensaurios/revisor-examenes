@@ -75,35 +75,55 @@ function tabla(encabezados, filas) {
 }
 
 function seccionConcreto(parametroValor, correctas) {
-  const { KG_A_LB, CM_POR_PULGADA, GRAVA_M3, LITROS_POR_M3, CUBETA_LITROS, CEMENTO_KG, SACO_KG } = CONSTANTES
+  const {
+    KG_A_LB,
+    LB_A_KG,
+    CM_POR_PULGADA,
+    GRAVA_M3,
+    LITROS_POR_M3,
+    CUBETA_LITROS,
+    CEMENTO_KG,
+    SACO_KG
+  } = CONSTANTES
+  const areaPulgada2 = `${CM_POR_PULGADA}² cm²/in²`
 
-  return tabla(
+  const cuerpo = tabla(
     ['Inciso', 'Respuesta correcta', 'Unidad', 'Procedimiento'],
     [
       [
         'a)',
-        formatear(correctas.a.psi),
+        formatear(correctas.a.psi, 4),
         'psi',
-        `${parametroValor} kg/cm² × ${KG_A_LB} lb/kg × ${CM_POR_PULGADA}² cm²/in²`
+        `${parametroValor} kg/cm² × ${KG_A_LB} lb/kg × ${areaPulgada2}`
+      ],
+      [
+        'a)',
+        formatear(correctas.a.psiAlterno, 4),
+        'psi',
+        `${parametroValor} kg/cm² × (1 / ${LB_A_KG}) lb/kg × ${areaPulgada2}`
       ],
       [
         'b)',
-        formatear(correctas.b.cubetas),
+        formatear(correctas.b.cubetas, 4),
         'cubetas',
         `(${GRAVA_M3} m³ × ${LITROS_POR_M3} L/m³) / ${CUBETA_LITROS} L/cubeta`
       ],
-      ['c)', formatear(correctas.c.sacos), 'sacos', `${CEMENTO_KG} kg / ${SACO_KG} kg/saco`]
+      ['c)', formatear(correctas.c.sacos, 4), 'sacos', `${CEMENTO_KG} kg / ${SACO_KG} kg/saco`]
     ]
   )
+
+  return `${cuerpo}
+
+Ambos resultados del inciso a) son válidos: la diferencia (~0.09 %) proviene de redondear el factor 1 lb = ${LB_A_KG} kg.`
 }
 
 function seccionAire(examen, parametroTexto, correctas) {
   const { largo, ancho, alto } = CONSTANTES.DIMENSIONES_FT
   const { FT3_A_M3, GRAMOS_POR_KG } = CONSTANTES
-  const volumenFt3 = formatear(correctas.volumen_ft3)
-  const volumenM3 = formatear(correctas.volumen_m3)
-  const densidad = formatear(correctas.densidad.valor)
-  const masaKg = formatear(correctas.masa_kg)
+  const volumenFt3 = formatear(correctas.volumen_ft3, 4)
+  const volumenM3 = formatear(correctas.volumen_m3, 4)
+  const densidad = formatear(correctas.densidad.valor, 4)
+  const masaKg = formatear(correctas.masa_kg, 4)
 
   return tabla(
     ['Concepto', 'Valor', 'Unidad', 'Procedimiento'],
@@ -112,7 +132,7 @@ function seccionAire(examen, parametroTexto, correctas) {
       ['Volumen', volumenM3, 'm³', `${volumenFt3} ft³ × ${FT3_A_M3}`],
       ['Densidad', densidad, 'kg/m³', `${examen.expresion_parametro} → ${parametroTexto}`],
       ['Masa', masaKg, 'kg', `${volumenM3} m³ × ${densidad} kg/m³`],
-      ['Masa', formatear(correctas.masa_g), 'g', `${masaKg} kg × ${GRAMOS_POR_KG}`]
+      ['Masa', formatear(correctas.masa_g, 4), 'g', `${masaKg} kg × ${GRAMOS_POR_KG}`]
     ]
   )
 }

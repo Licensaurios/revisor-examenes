@@ -27,7 +27,7 @@
           "pregunta": "Resistencia del concreto en psi (libras por pulgada cuadrada)",
           "magnitud": "presión/esfuerzo",
           "conversion": "kg/cm2 -> lb/in2",
-          "factores_necesarios": ["1 kg = 2.2046 lb", "1 in = 2.54 cm"],
+          "factores_necesarios": ["1 kg = 2.2046 lb (o su equivalente 1 lb = 0.454 kg)", "1 in = 2.54 cm"],
           "resultado_esperado_en": "psi"
         },
         {

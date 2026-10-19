@@ -4,7 +4,9 @@ export const LIMITE_NOMBRE_AMBIGUO = 10
 
 export const CONSTANTES = Object.freeze({
   // Concreto
+  // Ambos factores son válidos; "1 lb = 0.454 kg" equivale a 1 kg ≈ 2.20264 lb.
   KG_A_LB: 2.2046,
+  LB_A_KG: 0.454,
   CM_POR_PULGADA: 2.54,
   GRAVA_M3: 0.6,
   LITROS_POR_M3: 1000,
@@ -20,11 +22,18 @@ export const CONSTANTES = Object.freeze({
 const examenesPorId = new Map(examenesData.examenes.map((ex) => [ex.id, ex]))
 
 const calculadoras = {
-  concreto_cimentacion: (resistenciaKgCm2) => ({
-    a: { psi: resistenciaKgCm2 * CONSTANTES.KG_A_LB * CONSTANTES.CM_POR_PULGADA ** 2 },
-    b: { cubetas: (CONSTANTES.GRAVA_M3 * CONSTANTES.LITROS_POR_M3) / CONSTANTES.CUBETA_LITROS },
-    c: { sacos: CONSTANTES.CEMENTO_KG / CONSTANTES.SACO_KG }
-  }),
+  concreto_cimentacion: (resistenciaKgCm2) => {
+    const cm2PorPulgada2 = CONSTANTES.CM_POR_PULGADA ** 2
+    return {
+      a: {
+        psi: resistenciaKgCm2 * CONSTANTES.KG_A_LB * cm2PorPulgada2,
+        // Variante para quien usa 1 lb = 0.454 kg en lugar de 1 kg = 2.2046 lb.
+        psiAlterno: resistenciaKgCm2 * (1 / CONSTANTES.LB_A_KG) * cm2PorPulgada2
+      },
+      b: { cubetas: (CONSTANTES.GRAVA_M3 * CONSTANTES.LITROS_POR_M3) / CONSTANTES.CUBETA_LITROS },
+      c: { sacos: CONSTANTES.CEMENTO_KG / CONSTANTES.SACO_KG }
+    }
+  },
 
   masa_de_aire: (densidadKgM3) => {
     const { largo, ancho, alto } = CONSTANTES.DIMENSIONES_FT
@@ -69,7 +78,7 @@ export function calcularRespuestasCorrectas(examen, valorParametro) {
   return calcular(valor)
 }
 
-export function formatear(n) {
+export function formatear(n, decimales = 2) {
   const num = Number(n)
-  return Number.isFinite(num) ? num.toFixed(2) : 'N/A'
+  return Number.isFinite(num) ? num.toFixed(decimales) : 'N/A'
 }
