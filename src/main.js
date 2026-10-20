@@ -92,23 +92,23 @@ function seccionConcreto(parametroValor, correctas) {
     [
       [
         'a)',
-        formatear(correctas.a.psi, 4),
+        formatear(correctas.a.psi),
         'psi',
         `${parametroValor} kg/cm² × ${KG_A_LB} lb/kg × ${areaPulgada2}`
       ],
       [
         'a)',
-        formatear(correctas.a.psiAlterno, 4),
+        formatear(correctas.a.psiAlterno),
         'psi',
         `${parametroValor} kg/cm² × (1 / ${LB_A_KG}) lb/kg × ${areaPulgada2}`
       ],
       [
         'b)',
-        formatear(correctas.b.cubetas, 4),
+        formatear(correctas.b.cubetas),
         'cubetas',
         `(${GRAVA_M3} m³ × ${LITROS_POR_M3} L/m³) / ${CUBETA_LITROS} L/cubeta`
       ],
-      ['c)', formatear(correctas.c.sacos, 4), 'sacos', `${CEMENTO_KG} kg / ${SACO_KG} kg/saco`]
+      ['c)', formatear(correctas.c.sacos), 'sacos', `${CEMENTO_KG} kg / ${SACO_KG} kg/saco`]
     ]
   )
 
@@ -120,10 +120,10 @@ Ambos resultados del inciso a) son válidos: la diferencia (~0.09 %) proviene de
 function seccionAire(examen, parametroTexto, correctas) {
   const { largo, ancho, alto } = CONSTANTES.DIMENSIONES_FT
   const { FT3_A_M3, GRAMOS_POR_KG } = CONSTANTES
-  const volumenFt3 = formatear(correctas.volumen_ft3, 4)
-  const volumenM3 = formatear(correctas.volumen_m3, 4)
-  const densidad = formatear(correctas.densidad.valor, 4)
-  const masaKg = formatear(correctas.masa_kg, 4)
+  const volumenFt3 = formatear(correctas.volumen_ft3)
+  const volumenM3 = formatear(correctas.volumen_m3)
+  const densidad = formatear(correctas.densidad.valor)
+  const masaKg = formatear(correctas.masa_kg)
 
   return tabla(
     ['Concepto', 'Valor', 'Unidad', 'Procedimiento'],
@@ -132,7 +132,7 @@ function seccionAire(examen, parametroTexto, correctas) {
       ['Volumen', volumenM3, 'm³', `${volumenFt3} ft³ × ${FT3_A_M3}`],
       ['Densidad', densidad, 'kg/m³', `${examen.expresion_parametro} → ${parametroTexto}`],
       ['Masa', masaKg, 'kg', `${volumenM3} m³ × ${densidad} kg/m³`],
-      ['Masa', formatear(correctas.masa_g, 4), 'g', `${masaKg} kg × ${GRAMOS_POR_KG}`]
+      ['Masa', formatear(correctas.masa_g), 'g', `${masaKg} kg × ${GRAMOS_POR_KG}`]
     ]
   )
 }
@@ -163,7 +163,7 @@ function generarReporte({ nombreCompleto, primerNombre, a, examen, parametro, co
       `- **Posición de "a":** ${examen.posicion_de_a}`,
       `- **Valor calculado con a=${a}:** ${formatear(parametro.valor)} ${unidad}`
     ].join('\n'),
-    '## Respuestas correctas (con 4 decimales)',
+    '## Respuestas correctas (con 2 decimales)',
     construirSeccion({ examen, parametro, correctas })
   ].join('\n\n')
 }

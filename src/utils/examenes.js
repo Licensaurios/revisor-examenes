@@ -78,7 +78,7 @@ export function calcularRespuestasCorrectas(examen, valorParametro) {
   return calcular(valor)
 }
 
-export function formatear(n, decimales = 2) {
+export function formatear(n) {
   const num = Number(n)
-  return Number.isFinite(num) ? num.toFixed(decimales) : 'N/A'
+  return Number.isFinite(num) ? num.toFixed(2) : 'N/A'
 }
